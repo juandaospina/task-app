@@ -1,0 +1,12 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* text-align: center; */
+  background-color: #F2F4F9;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  background-color: #F2F4F9;
+}

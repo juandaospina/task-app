@@ -1,0 +1,30 @@
+"mock" = [
+    {
+      "id": "1",
+      "title": "Lavar ropa",
+      "description": "Lavar la ropa que esta en el cesto",
+      "tag": "Aseo",
+      "completed": false,
+    },
+    {
+      "id": "2",
+      "title": "Enviar documentos",
+      "description": "Enviar los documentos de seguridad social",
+      "tag": "Documentos",
+      "completed": false,
+    },
+    {
+      "id": "3",
+      "title": "Meditar",
+      "description": "Meditar",
+      "tag": "Leer",
+      "completed": false,
+    },
+    {
+      "id": "4",
+      "title": "Ir a gimnasio",
+      "description": "Realizar rutina de deporte en gimnasio",
+      "tag": "Ejercicio",
+      "completed": true,
+    },
+];
