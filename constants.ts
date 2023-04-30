@@ -3,6 +3,9 @@ export const TAG_COLORS = {
   Aseo: "236, 112, 99",
   Leer: "155, 89, 182",
   Ejercicio: "26, 188, 156",
+  Estudiar: "46, 204, 113",
+  Meditar: "241, 196, 15",
+  Pagar: "52, 73, 94"
 };
 
 export const TODO_FILTERS = {
