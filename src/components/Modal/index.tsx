@@ -44,7 +44,7 @@ export const TodoModal = () => {
     return formValues.title.length > 0 ? "" : "is-invalid";
   }, [formValues.title, isSubmited]);
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { target: { name, value } } = event;
     setFormValaues({
       ...formValues,
@@ -58,15 +58,6 @@ export const TodoModal = () => {
       [itemDate]: event,
     });
   };
-
-  const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    console.log("[select_input_change]", { name, value })
-    setFormValaues({
-      ...formValues,
-      [name]: value
-    })
-  }
 
   const onModalCloseHandler = () => {
     setHandleModal(false);
@@ -150,7 +141,7 @@ export const TodoModal = () => {
 
           <div className="form-group mb-2">
             <label>Tag evento</label>
-            <select className="form-control" name="tag" value={formValues.tag} onChange={onSelectChange}>
+            <select className="form-control" name="tag" value={formValues.tag} onChange={onInputChange}>
               <option value="">Seleccione una opción</option>
               {Object.entries(TAG_COLORS).map(([key]) => (
                 <option key={key} value={key}>{key}</option>
