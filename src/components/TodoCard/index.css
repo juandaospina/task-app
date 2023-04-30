@@ -71,3 +71,9 @@
 .card-date span:nth-child(1) {
   font-weight: 600;
 }
+
+@media screen and (min-width: 640px) {
+  .header-card button {
+    margin-right: 5px;
+  }
+}
