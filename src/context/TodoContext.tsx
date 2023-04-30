@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 
 import { toast } from "sonner";
 
 import { FilterValue, Todo } from "../types/todo";
+import { ContextProps } from "../types/context";
 import { TODO_FILTERS } from "../../constants";
 
 const mock: Todo[] = [
@@ -44,19 +45,8 @@ const mock: Todo[] = [
   },
 ];
 
-interface Props {
-  todos: Todo[];
-  filterSelected: FilterValue;
-  handleModal: boolean;
-  setHandleModal: (change: boolean) => void;
-  setFilterSelected: (filter: FilterValue) => void;
-  onCompletedHandler: (id: string, completed: boolean) => void;
-  onFilterChangeHandler: (filter: FilterValue) => void;
-  onDeleteHandler: (id: string) => void;
-  onAddTask: (task: Todo) => void;
-  onTodosFilter: any;
-  activeCount: number;
-  completedCount: number;
+type Props = {
+  children: ReactNode
 }
 
 const defaultState = {
@@ -74,9 +64,9 @@ const defaultState = {
   completedCount: 0,
 };
 
-export const todoContext = createContext<Props>(defaultState);
+export const todoContext = createContext<ContextProps>(defaultState);
 
-export const TodoProvider = ({ children }: any) => {
+export const TodoProvider = ({ children }: Props) => {
   const [todos, setTodos] = useState<Todo[]>(mock);
   const [handleModal, setHandleModal] = useState(false);
   const [filterSelected, setFilterSelected] = useState<FilterValue>(
