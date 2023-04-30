@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 
 import { toast } from "sonner";
 
 import { FilterValue, Todo } from "../types/todo";
+import { ContextProps } from "../types/context";
 import { TODO_FILTERS } from "../../constants";
 
 const mock: Todo[] = [
@@ -11,8 +12,8 @@ const mock: Todo[] = [
     title: "Lavar ropa",
     description: "Lavar la ropa que esta en el cesto",
     tag: "Aseo",
-    dateStart: "Sat Apr 30 2023 00:00:00 GMT-0500",
-    dateEnd: "Sat Apr 30 2023 02:00:00 GMT-0500",
+    dateStart: "Sat Apr 07 2023 00:00:00 GMT-0500",
+    dateEnd: "Sat Apr 07 2023 02:00:00 GMT-0500",
     completed: false,
   },
   {
@@ -20,8 +21,8 @@ const mock: Todo[] = [
     title: "Enviar documentos",
     description: "Enviar los documentos de seguridad social",
     tag: "Documentos",
-    dateStart: "Sat Apr 30 2023 00:00:00 GMT-0500",
-    dateEnd: "Sat Apr 30 2023 02:00:00 GMT-0500",
+    dateStart: "Sat Apr 15 2023 00:00:00 GMT-0500",
+    dateEnd: "Sat Apr 21 2023 02:00:00 GMT-0500",
     completed: false,
   },
   {
@@ -38,25 +39,14 @@ const mock: Todo[] = [
     title: "Ir a gimnasio",
     description: "Realizar rutina de deporte en gimnasio",
     tag: "Ejercicio",
-    dateStart: "Sat Apr 30 2023 00:00:00 GMT-0500",
-    dateEnd: "Sat Apr 30 2023 02:00:00 GMT-0500",
+    dateStart: "Sat May 02 2023 00:00:00 GMT-0500",
+    dateEnd: "Sat May 03 2023 02:00:00 GMT-0500",
     completed: true,
   },
 ];
 
-interface Props {
-  todos: Todo[];
-  filterSelected: FilterValue;
-  handleModal: boolean;
-  setHandleModal: (change: boolean) => void;
-  setFilterSelected: (filter: FilterValue) => void;
-  onCompletedHandler: (id: string, completed: boolean) => void;
-  onFilterChangeHandler: (filter: FilterValue) => void;
-  onDeleteHandler: (id: string) => void;
-  onAddTask: (task: Todo) => void;
-  onTodosFilter: any;
-  activeCount: number;
-  completedCount: number;
+type Props = {
+  children: ReactNode
 }
 
 const defaultState = {
@@ -65,7 +55,7 @@ const defaultState = {
   handleModal: false,
   setHandleModal: () => {},
   setFilterSelected: () => {},
-  onCompletedHandler: () => {},
+  onCompletedTaskHandler: () => {},
   onFilterChangeHandler: () => {},
   onDeleteHandler: () => {},
   onTodosFilter: () => {},
@@ -74,16 +64,16 @@ const defaultState = {
   completedCount: 0,
 };
 
-export const todoContext = createContext<Props>(defaultState);
+export const todoContext = createContext<ContextProps>(defaultState);
 
-export const TodoProvider = ({ children }: any) => {
+export const TodoProvider = ({ children }: Props) => {
   const [todos, setTodos] = useState<Todo[]>(mock);
   const [handleModal, setHandleModal] = useState(false);
   const [filterSelected, setFilterSelected] = useState<FilterValue>(
     TODO_FILTERS.ALL
   );
 
-  const onCompletedHandler = (id: string | null, completed: boolean): void => {
+  const onCompletedTaskHandler = (id: string | null, completed: boolean): void => {
     const todosListNew = todos.map((todo) =>
       todo.id === id ? { ...todo, completed } : { ...todo }
     );
@@ -128,7 +118,7 @@ export const TodoProvider = ({ children }: any) => {
         handleModal,
         setHandleModal,
         setFilterSelected,
-        onCompletedHandler,
+        onCompletedTaskHandler,
         onFilterChangeHandler,
         onDeleteHandler,
         onAddTask,

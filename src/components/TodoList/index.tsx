@@ -8,7 +8,7 @@ import "./index.css";
 export const TodoList = () => {
   const {
     onTodosFilter: todos,
-    onCompletedHandler,
+    onCompletedTaskHandler,
     onDeleteHandler,
   } = useContext(todoContext);
   return (
@@ -17,7 +17,7 @@ export const TodoList = () => {
         <TodoCard
           key={todo.id}
           todo={todo}
-          onTodoComplete={onCompletedHandler}
+          onTodoComplete={onCompletedTaskHandler}
           onDeleteHandler={onDeleteHandler}
         />
       ))}
