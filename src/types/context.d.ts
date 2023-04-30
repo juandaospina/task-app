@@ -4,7 +4,7 @@ export interface ContextProps {
   handleModal: boolean;
   setHandleModal: (change: boolean) => void;
   setFilterSelected: (filter: FilterValue) => void;
-  onCompletedHandler: (id: string, completed: boolean) => void;
+  onCompletedTaskHandler: (id: string, completed: boolean) => void;
   onFilterChangeHandler: (filter: FilterValue) => void;
   onDeleteHandler: (id: string) => void;
   onAddTask: (task: Todo) => void;
